@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.zhiyuanxinxi.mapper.ZhiyuanxinxiMapper">
+    
+    <resultMap type="Zhiyuanxinxi" id="ZhiyuanxinxiResult">
+        <result property="idzhiyuanxinxi"    column="idzhiyuanxinxi"    />
+        <result property="源名字"    column="源名字"    />
+        <result property="目标名字"    column="目标名字"    />
+        <result property="源组织"    column="源组织"    />
+        <result property="目标组织"    column="目标组织"    />
+    </resultMap>
+
+    <sql id="selectZhiyuanxinxiVo">
+        select idzhiyuanxinxi, 源名字, 目标名字, 源组织, 目标组织 from zhiyuanxinxi
+    </sql>
+
+    <select id="selectZhiyuanxinxiList" parameterType="Zhiyuanxinxi" resultMap="ZhiyuanxinxiResult">
+        <include refid="selectZhiyuanxinxiVo"/>
+        <where>  
+            <if test="源名字 != null  and 源名字 != ''"> and 源名字 like concat('%', #{源名字}, '%')</if>
+            <if test="目标名字 != null  and 目标名字 != ''"> and 目标名字 like concat('%', #{目标名字}, '%')</if>
+            <if test="源组织 != null  and 源组织 != ''"> and 源组织 like concat('%', #{源组织}, '%')</if>
+            <if test="目标组织 != null  and 目标组织 != ''"> and 目标组织 like concat('%', #{目标组织}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectZhiyuanxinxiByIdzhiyuanxinxi" parameterType="Long" resultMap="ZhiyuanxinxiResult">
+        <include refid="selectZhiyuanxinxiVo"/>
+        where idzhiyuanxinxi = #{idzhiyuanxinxi}
+    </select>
+
+    <insert id="insertZhiyuanxinxi" parameterType="Zhiyuanxinxi">
+        insert into zhiyuanxinxi
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="idzhiyuanxinxi != null">idzhiyuanxinxi,</if>
+            <if test="源名字 != null">源名字,</if>
+            <if test="目标名字 != null">目标名字,</if>
+            <if test="源组织 != null">源组织,</if>
+            <if test="目标组织 != null">目标组织,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="idzhiyuanxinxi != null">#{idzhiyuanxinxi},</if>
+            <if test="源名字 != null">#{源名字},</if>
+            <if test="目标名字 != null">#{目标名字},</if>
+            <if test="源组织 != null">#{源组织},</if>
+            <if test="目标组织 != null">#{目标组织},</if>
+         </trim>
+    </insert>
+
+    <update id="updateZhiyuanxinxi" parameterType="Zhiyuanxinxi">
+        update zhiyuanxinxi
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="源名字 != null">源名字 = #{源名字},</if>
+            <if test="目标名字 != null">目标名字 = #{目标名字},</if>
+            <if test="源组织 != null">源组织 = #{源组织},</if>
+            <if test="目标组织 != null">目标组织 = #{目标组织},</if>
+        </trim>
+        where idzhiyuanxinxi = #{idzhiyuanxinxi}
+    </update>
+
+    <delete id="deleteZhiyuanxinxiByIdzhiyuanxinxi" parameterType="Long">
+        delete from zhiyuanxinxi where idzhiyuanxinxi = #{idzhiyuanxinxi}
+    </delete>
+
+    <delete id="deleteZhiyuanxinxiByIdzhiyuanxinxis" parameterType="String">
+        delete from zhiyuanxinxi where idzhiyuanxinxi in 
+        <foreach item="idzhiyuanxinxi" collection="array" open="(" separator="," close=")">
+            #{idzhiyuanxinxi}
+        </foreach>
+    </delete>
+
+</mapper>

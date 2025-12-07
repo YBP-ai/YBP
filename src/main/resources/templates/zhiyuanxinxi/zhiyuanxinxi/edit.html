@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改职员对应表')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-zhiyuanxinxi-edit" th:object="${zhiyuanxinxi}">
+            <input name="idzhiyuanxinxi" th:field="*{idzhiyuanxinxi}" type="hidden">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">源名字：</label>
+                    <div class="col-sm-8">
+                        <input name="源名字" th:field="*{源名字}" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">目标名字：</label>
+                    <div class="col-sm-8">
+                        <input name="目标名字" th:field="*{目标名字}" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">源组织：</label>
+                    <div class="col-sm-8">
+                        <input name="源组织" th:field="*{源组织}" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">目标组织：</label>
+                    <div class="col-sm-8">
+                        <input name="目标组织" th:field="*{目标组织}" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "zhiyuanxinxi/zhiyuanxinxi";
+        $("#form-zhiyuanxinxi-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-zhiyuanxinxi-edit').serialize());
+            }
+        }
+    </script>
+</body>
+</html>
