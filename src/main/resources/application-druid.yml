@@ -10,7 +10,7 @@ spring:
                 username: root
                 password: kingdee@123
                # 本地数据库信息
-            # 从库数据源
+            # 从库数据源00
             slave:
                 # 从数据源开关/默认关闭
                 enabled: false
