@@ -10,5 +10,6 @@ public class renwu2 {
         System.out.println("执行没有参方法：" + params);
         System.out.println("执行没有参方法2：" + params);
         System.out.println("执行没有参方法3：" + params);
+        System.out.println("执行没有参方法4：" + params);
     }
 }
