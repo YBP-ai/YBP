@@ -9,6 +9,9 @@ public class renwu {
     {
         System.out.println("执行有参方法：" + params);
         System.out.println("执行有参方法：" + params);
-        System.out.println("执行有参方法：" + params);
+        System.out.println("执行有参方法1：" + params);
+        System.out.println("执行有参方法2：");
+
+
     }
 }
