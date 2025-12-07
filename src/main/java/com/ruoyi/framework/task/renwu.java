@@ -8,5 +8,7 @@ public class renwu {
     public void ryParams(String params)
     {
         System.out.println("执行有参方法：" + params);
+        System.out.println("执行有参方法：" + params);
+
     }
 }
